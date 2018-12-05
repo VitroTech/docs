@@ -1,11 +1,11 @@
 # Setting up a Vitro Crystal for AWS Greengrass
 
-This guide presents how to setup Vitro Crystal device with Vitrobian 0.1.0
+This guide presents how to setup Vitro Crystal device with Vitrobian 0.2.0
 for AWS Greengrass.
 
 1. Download Vitrobian operating system.
 
-    [Download link](https://s3-eu-west-1.amazonaws.com/prod-vitrobian-releases/vitrobian_0.1.0.img.gz)
+    [Download link](https://s3-eu-west-1.amazonaws.com/prod-vitrobian-releases/vitrobian_0.2.0.img.gz)
 
 2. Verify downloaded image.
 
@@ -15,15 +15,15 @@ for AWS Greengrass.
     * `md5sum`:
 
     ```
-    $ md5sum vitrobian_0.1.0.img.gz
-    aa05de9a10d22a0995a1dd8adfdaf8a1  vitrobian_0.1.0.img.gz
+    $ md5sum vitrobian_0.2.0.img.gz
+    86d586aa04fa31156be80a2ed8988167  vitrobian_0.2.0.img.gz
     ```
 
     * `sha256sum`:
 
     ```
-    $ sha256sum vitrobian_0.1.0.img.gz
-    da286e074b5a4e151780dce5ddfce2b452d82be37d632db5e86828941aca1d30  vitrobian_0.1.0.img.gz
+    $ sha256sum vitrobian_0.2.0.img.gz
+    1fd243643aaeafd934c57c9e26f630ace22e1129c608f22961cec7bc64545084  vitrobian_0.2.0.img.gz
     ```
 
 3. Flash the system into SD card.
@@ -36,7 +36,7 @@ for AWS Greengrass.
     Download [etcher](https://etcher.io/). It is multi-platform application that
     is available for Linux, Windows or macOS.
 
-    Click on `Select Image` and select `vitrobian_0.1.0.img.gz`.
+    Click on `Select Image` and select `vitrobian_0.2.0.img.gz`.
     There is no need to unpack the image first.
 
     The SD card reader should be picked automatically. If more than one readers
@@ -45,7 +45,7 @@ for AWS Greengrass.
     Configured application window should look similar to this one (SD card
     reader name may vary):
 
-    ![etcher](etcher.png)
+    ![etcher](img/etcher.png)
 
     When confirmed, click on the `Flash` button to start flashing procedure.
     Depending on your setup, you will be prompted for `sudo user` or
@@ -116,19 +116,17 @@ for AWS Greengrass.
 
 4. Prepare Vitro Crystal platform
 
-    * Attach jumper on the `J12` header as shown on the photo:
+    * Attach jumper on the `1-2` pins of `J12` header
 
-    ![boot_select_jumper](boot_select_jumper.png)
+    * Setup the boot configuration switches (`SW2`) as below:
 
-    * Setup the boot configuration switches (SW2) as shown on the photo:
-
-    ![boot_select_switch](boot_select_switch.png)
+      | Switch number | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+      |---------------|---|---|---|---|---|---|---|---|
+      | Value         | 1 | 0 | 1 | 0 | 0 | 0 | 1 | 0 |
 
     * Insert the SD card into the Vitro Crystal.
 
     * Connect Ethernet cable and power supply for the board
-
-    ![connected_board](connected_board.png)
 
 5. Connect to Vitro Crystal using serial port.
 
@@ -178,7 +176,7 @@ for AWS Greengrass.
     when you are connected via serial port:
 
     ```
-    $ /sbin/ifconfig
+    $ ifconfig
     ```
 
     Exemplary output of above command:
@@ -214,7 +212,7 @@ for AWS Greengrass.
     Please, change the `vitro-crystal-ip-address` to address obtained in
     previous step.
 
-    Login to Vitro Crystal using credentials from point: `7. Login to Vitrobian
+    Login to Vitro Crystal using credentials from point: `6. Login to Vitrobian
     with credentials`.
 
 9. Create user and group for GGC.
@@ -226,41 +224,10 @@ for AWS Greengrass.
     $ sudo addgroup --system ggc_group
     ```
 
-12. Enable hardlink and softlink protection.
-
-    It is recommended to activate this protection to improve security on the
-    device. In order to do that please uncomment and set to `1` following lines 
-    in file `/etc/sysctl.d/99-sysctl.conf`:
-
-    ```
-    #fs.protected_hardlinks=0
-    #fs.protected_symlinks=0
-    ```
-
-    These are the last two lines of the file.
-    After changed reboot the platform by typing:
-
-    ```
-    $ sudo /sbin/reboot
-    ```
-
-    Then confirm changes using command:
-
-    ```
-    $ sudo sysctl -a | grep fs.protected
-    ```
-
-    The output should contain:
-
-    ```
-    fs.protected_hardlinks = 1
-    fs.protected_symlinks = 1
-    ```
-
 10. Install required packages
 
     ```
-    $ sudo apt install git wget
+    $ sudo apt install git
     ```
 
 11. Verify your Vitro Crystal system.
