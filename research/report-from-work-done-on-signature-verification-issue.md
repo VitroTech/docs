@@ -7,8 +7,7 @@
  1. Research on core concepts related to the issue. As it's a more complex
  Issue it needed time,
  2. After getting AWS credentials needed to run the ___Oracle Data Store___, the _Oracle Data Store_ and _Oracle Key Store PoC_ was build,
- 3. With the help of components creator, Andrzej, the components were configured to work with each other and some potential fixes were tested
- (listed below) - none of which did not bring the expected result,
+ 3. With the help of components creator, the components were configured to work with each other and some potential fixes were tested (listed below) - none of which did bring the expected result,
 
 ### What Was Checked
 
@@ -51,4 +50,4 @@ console logs meant to help with tracking the issue,
 
 ### Conclusion
 
-As there was no additional possible solutions in sight, and due to limited time designated for this task, there was no further attempts made. Documentation is scarce on this matter, so it's hard to find an description on how to attach the keys to the payload.
+As there was no additional possible solutions in sight there was no further attempts made. Documentation is scarce on this matter, so it's hard to find an description on how to attach the keys to the payload.
