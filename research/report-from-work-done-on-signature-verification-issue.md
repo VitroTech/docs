@@ -5,14 +5,10 @@
 ### Steps Done
 
  1. Research on core concepts related to the issue. As it's a more complex
- Issue and some crucial components are build with golang - a language not
- used by me - this step took me about 4h,
- 2. After getting AWS credentials needed to run the ___Oracle Data Store___, I
- was able to build and run the _Oracle Data Store_ and _Oracle Key Store PoC_ ~ 1h,
- 3. As time-cap set for this task was limited, I had about 7h left to work on
- this problem. With the help of components creator, Andrzej, I was able to
- configure the components to work with each other and test some potential fixes
- (listed below) - none of them did not bring the expected result ~ 4h,
+ Issue it needed time,
+ 2. After getting AWS credentials needed to run the ___Oracle Data Store___, the _Oracle Data Store_ and _Oracle Key Store PoC_ was build,
+ 3. With the help of components creator, Andrzej, the components were configured to work with each other and some potential fixes were tested
+ (listed below) - none of which did not bring the expected result,
 
 ### What Was Checked
 
